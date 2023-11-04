@@ -7,10 +7,6 @@ public class Teacher extends Person {
         this.specialization = specialization;
     }
 
-    public String getSpecialization() {
-        return specialization;
-    }
-
     @Override
     public boolean canUseServices() {
         return true;

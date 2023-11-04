@@ -1,8 +1,8 @@
-public class Person {
-    private int id;
-    private String name;
-    private int age;
-    private boolean parentPermission;
+ class Person {
+     int id;
+    String name;
+     int age;
+     boolean parentPermission;
 
     public Person(int age, String name, boolean parentPermission) {
         this.id = generateId();

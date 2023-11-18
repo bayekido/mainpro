@@ -1,28 +1,23 @@
-<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
 
-class Person implements Nameable {
+public class Person implements Nameable {
     int id;
-    String name;
-    int age;
-    boolean parentPermission;
-=======
- class Person {
-     int id;
-    String name;
-     int age;
-     boolean parentPermission;
->>>>>>> 1296fa2525f63014450be1bca9c7c3ce3ae12c58
+  String name;
+  int age;
+ boolean parent_permission=false;
+    private List<Rental> rentals;
 
-    public Person(int age, String name, boolean parentPermission) {
-        this.id = generateId();
+    public Person(int id, String name, boolean parent_permission  ) {
+        this.id = id;
         this.name = name;
         this.age = age;
-        this.parentPermission = parentPermission;
+        this.parent_permission = parent_permission;
+        this.rentals = new ArrayList<>();
     }
 
-    private int generateId() {
-        // Assume implementation for generating a unique ID
-        return 0;
+    public void addRental(Rental rental) {
+        rentals.add(rental);
     }
 
     public int getId() {
@@ -33,32 +28,31 @@ class Person implements Nameable {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAge() {
         return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    private boolean isOfAge() {
+    private boolean ofAge() {
         return age >= 18;
     }
 
     public boolean canUseServices() {
-        return isOfAge() || parentPermission;
+        return ofAge() || parent_permission;
     }
-<<<<<<< HEAD
 
-    @Override
-    public String getCorrectName() {
+    public String correct_name() {
         return name;
     }
+
+
+
+
 }
-=======
-}
->>>>>>> 1296fa2525f63014450be1bca9c7c3ce3ae12c58

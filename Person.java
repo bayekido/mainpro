@@ -1,19 +1,23 @@
- class Person {
-     int id;
-    String name;
-     int age;
-     boolean parentPermission;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Person(int age, String name, boolean parentPermission) {
-        this.id = generateId();
+public class Person implements Nameable {
+    int id;
+  String name;
+  int age;
+ boolean parent_permission=false;
+    private List<Rental> rentals;
+
+    public Person(int id, String name, boolean parent_permission  ) {
+        this.id = id;
         this.name = name;
         this.age = age;
-        this.parentPermission = parentPermission;
+        this.parent_permission = parent_permission;
+        this.rentals = new ArrayList<>();
     }
 
-    private int generateId() {
-        // Assume implementation for generating a unique ID
-        return 0;
+    public void addRental(Rental rental) {
+        rentals.add(rental);
     }
 
     public int getId() {
@@ -24,23 +28,31 @@
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAge() {
         return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    private boolean isOfAge() {
+    private boolean ofAge() {
         return age >= 18;
     }
 
     public boolean canUseServices() {
-        return isOfAge() || parentPermission;
+        return ofAge() || parent_permission;
     }
+
+    public String correct_name() {
+        return name;
+    }
+
+
+
+
 }

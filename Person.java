@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-
 class Person implements Nameable {
-    int id;
-    String name;
-    int age;
-    boolean parentPermission;
-=======
- class Person {
      int id;
     String name;
      int age;
      boolean parentPermission;
->>>>>>> 1296fa2525f63014450be1bca9c7c3ce3ae12c58
-
     public Person(int age, String name, boolean parentPermission) {
         this.id = generateId();
         this.name = name;
@@ -52,13 +42,7 @@ class Person implements Nameable {
     public boolean canUseServices() {
         return isOfAge() || parentPermission;
     }
-<<<<<<< HEAD
-
     @Override
     public String getCorrectName() {
         return name;
     }
-}
-=======
-}
->>>>>>> 1296fa2525f63014450be1bca9c7c3ce3ae12c58

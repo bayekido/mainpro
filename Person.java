@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +8,9 @@ public class Person implements Nameable {
   int age;
  boolean parent_permission=false;
     private List<Rental> rentals;
-
-    public Person(int id, String name, boolean parent_permission  ) {
-        this.id = id;
+  
+    public Person(int age, String name, boolean parentPermission) {
+        this.id = generateId();
         this.name = name;
         this.age = age;
         this.parent_permission = parent_permission;
@@ -51,8 +52,9 @@ public class Person implements Nameable {
     public String correct_name() {
         return name;
     }
-
-
-
-
 }
+    @Override
+    public String getCorrectName() {
+        return name;
+    }
+

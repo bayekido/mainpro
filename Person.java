@@ -4,17 +4,21 @@ import java.util.List;
 
 public class Person implements Nameable {
     int id;
-  String name;
-  int age;
- boolean parent_permission=false;
+    String name;
+    int age;
+    boolean parent_permission = false;
     private List<Rental> rentals;
-  
+
     public Person(int age, String name, boolean parentPermission) {
-        this.id = generateId();
+        this.id = getId();
         this.name = name;
         this.age = age;
         this.parent_permission = parent_permission;
         this.rentals = new ArrayList<>();
+    }
+
+    public Person() {
+
     }
 
     public void addRental(Rental rental) {
@@ -52,9 +56,10 @@ public class Person implements Nameable {
     public String correct_name() {
         return name;
     }
-}
+
     @Override
     public String getCorrectName() {
         return name;
     }
+}
 

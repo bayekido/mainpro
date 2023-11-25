@@ -37,4 +37,7 @@ public class Book {
         rentals.add(rental);
         rental.setBook(this);
     }
+
+    public int getId() {
+    }
 }

@@ -6,20 +6,20 @@ public class Person implements Nameable {
     int id;
     String name;
     int age;
-    boolean parent_permission = false;
+    boolean parentpermission;
     private List<Rental> rentals;
 
-    public Person(int age, String name, boolean parentPermission) {
-        this.id = getId();
+    public Person(int age, String name, boolean parentpermission) {
+        this.id = (int)(Math.random()*10000000);
         this.name = name;
         this.age = age;
-        this.parent_permission = parent_permission;
+        this.parentpermission = parentpermission;
         this.rentals = new ArrayList<>();
     }
 
-    public Person() {
 
-    }
+
+
 
     public void addRental(Rental rental) {
         rentals.add(rental);
@@ -45,12 +45,12 @@ public class Person implements Nameable {
         this.age = age;
     }
 
-    private boolean ofAge() {
+    public boolean ofAge() {
         return age >= 18;
     }
 
     public boolean canUseServices() {
-        return ofAge() || parent_permission;
+        return ofAge() || parentpermission;
     }
 
     public String correct_name() {
@@ -60,6 +60,10 @@ public class Person implements Nameable {
     @Override
     public String getCorrectName() {
         return name;
+    }
+
+    public int getid() {
+        return  id;
     }
 }
 

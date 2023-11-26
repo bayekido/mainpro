@@ -1,127 +1,144 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 public class App {
-    static List<Book> books = new ArrayList<>();
-    static List<Person> people = new ArrayList<>();
-    static List<Rental> rentals = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in);
+    static List<Book> books;
+    List<Person> people;
+    List<Rental> rentals;
 
-    static void listAllBooks() {
-        System.out.println("Listing all books:");
+    public App() {
+        books = new ArrayList<>();
+        people = new ArrayList<>();
+        rentals = new ArrayList<>();
+    }
+
+    void listAllBooks() {
         for (Book book : books) {
-            System.out.println(book.toString());
+            System.out.println("List of all books.");
+            System.out.println("Title: " + book.getTitle());
+            System.out.println("Author: " + book.getAuthor());
         }
     }
 
-    static void listAllPeople() {
-        System.out.println("Listing all people:");
+    void listAllPeople() {
         for (Person person : people) {
-            System.out.println(person.toString());
+            System.out.println("List of all peoples.");
+            System.out.println("ID:" + person.getid());
+            System.out.println("NAME:" + person.getName());
+            System.out.println("AGE:" + person.getAge());
+            // System.out.println(people.toString());
         }
     }
 
-    static void createPerson() {
-        System.out.println("Creating a person:");
-        System.out.println("Enter the name:");
-        String name = scanner.nextLine();
-        System.out.println("Enter the age:");
-        int age = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-        System.out.println("Does the person have parent permission? (yes/no):");
-        String permission = scanner.nextLine();
-
-        boolean hasParentPermission = permission.equalsIgnoreCase("yes");
-
-        System.out.println("Is the person a teacher or a student? (teacher/student):");
+    void createPerson() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Is the person a teacher or a student? [teacher]/[student]:");
         String type = scanner.nextLine();
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter age: ");
+        int age = scanner.nextInt();
+
+        scanner.nextLine(); // Consume the remaining newline character
+        System.out.println("Does the person have parent permission? (true/false):");
+        boolean ParentPermission;
+        ParentPermission = scanner.nextBoolean();
+        scanner.nextLine();
 
         Person person;
         if (type.equalsIgnoreCase("teacher")) {
-            System.out.println("Enter the subject:");
-            String subject = scanner.nextLine();
-            person = new Teacher(name,age,hasParentPermission);
-        } else {
-            System.out.println("Enter the grade:");
-            int grade = scanner.nextInt();
-            person = new Student(name,age,hasParentPermission);
-        }
+            System.out.print("Enter specialization: ");
+            String specialization = scanner.nextLine();
+            Teacher teacher = new Teacher(name, age,ParentPermission);
+            people.add(teacher);
 
-        people.add(person);
-        System.out.println("Person created successfully.");
+            System.out.println("Person created successfully.");
+        } else if (type.equalsIgnoreCase("student")) {
+            boolean parentpermission = false;
+            Student student = new Student( age,name, parentpermission);
+            people.add(student);
+            System.out.println("Student created successfully.");
+        } else {
+            System.out.println("Invalid person type.");
+        }
     }
 
-    static void createBook() {
-        System.out.println("Creating a book:");
-        System.out.println("Enter the title:");
+    void createBook() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter title: ");
         String title = scanner.nextLine();
-        System.out.println("Enter the author:");
+        scanner.nextLine();
+        System.out.print("Enter author: ");
         String author = scanner.nextLine();
-
+        scanner.nextLine();
         Book book = new Book(title, author);
         books.add(book);
-
         System.out.println("Book created successfully.");
     }
 
-    static void createRental() {
-        System.out.println("Creating a rental:");
-        System.out.println("Enter the person ID:");
+    void createRental() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter person ID: ");
         int personId = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-        System.out.println("Enter the book ID:");
-        int bookId = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-
+        scanner.nextLine();
         Person person = findPersonById(personId);
-        Book book = findBookById(bookId);
-
-        if (person != null && book != null) {
-            Rental rental = new Rental(book,person);
-            rentals.add(rental);
-            System.out.println("Rental created successfully.");
-        } else {
-            System.out.println("Person or book not found. Rental creation failed.");
-        }
-    }
-
-    static void listRentalsForPerson() {
-        System.out.println("Enter the person ID:");
-        int personId = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-
-        Person person = findPersonById(personId);
-
-        if (person != null) {
-            System.out.println("Listing rentals for person ID " + personId + ":");
-            for (Rental rental : rentals) {
-                if (rental.getPerson().getId() == personId) {
-                    System.out.println(rental.toString());
-                }
-            }
-        } else {
+        if (person == null) {
             System.out.println("Person not found.");
+            return;
+        }
+        System.out.print("Enter book Title: ");
+        String bookTitle = scanner.nextLine();
+        scanner.nextLine(); // Consume the remaining newline character
+
+        Book book = findBookByTitle(bookTitle);
+        if (book == null) {
+            System.out.println("Book not found.");
+            return;
+        }
+        Rental rental = new Rental(book, person);
+        rentals.add(rental);
+        System.out.println("Rental created successfully.");
+    }
+    private int getPersonByid(int personid){
+        return personid;
+    }
+    private String getBookByTitle(String bookTitle)
+    {
+        return bookTitle;
+    }
+    void listRentalsByPersonId(int personId) {
+        Scanner scanner = new Scanner(System.in);
+        Person person = findPersonById(personId);
+        if (person == null) {
+            System.out.println("Person not found.");
+            return;
+        }
+        System.out.println("Rentals for " + person.getName() + " (ID: " + person.getid() + "):");
+        boolean rentalsFound = false;
+        for (Rental rental : rentals) {
+            if (rental.getPerson().getid() == personId) {
+                System.out.println(rental.getBook().getTitle());
+                System.out.println(rental.getBook().getAuthor());
+                rentalsFound = true;
+            }
         }
     }
-
-    private static Person findPersonById(int personId) {
+    public Person findPersonById(int personId) {
         for (Person person : people) {
-            if (person.getId() == personId) {
+            if (person.getid() == personId) {
                 return person;
             }
         }
         return null;
     }
 
-    private static Book findBookById(int bookId) {
+    public static Book findBookByTitle(String title) {
         for (Book book : books) {
-            if (book.getId() == bookId) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
         }
         return null;
-    }
-
-}
+    }}

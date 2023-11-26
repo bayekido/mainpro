@@ -6,6 +6,7 @@ public class Rental {
     private Book book;
     private Person person;
 
+
     public Rental(Book book,Person person) {
         this.book = book;
         this.person = person;

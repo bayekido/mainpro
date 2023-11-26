@@ -8,4 +8,9 @@ public class BaseDecorator implements Nameable {
     public String correct_name() {
         return nameable.correct_name();
     }
+
+    @Override
+    public String getCorrectName() {
+        return null;
+    }
 }

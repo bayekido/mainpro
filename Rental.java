@@ -6,8 +6,10 @@ public class Rental {
     private Book book;
     private Person person;
 
-    public Rental(String date) {
-        this.date = date;
+
+    public Rental(Book book,Person person) {
+        this.book = book;
+        this.person = person;
     }
 
     public String getDate() {

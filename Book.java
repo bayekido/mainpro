@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/week5
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,4 +51,8 @@ public class Book {
     public int getId() {
         return id;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/week5

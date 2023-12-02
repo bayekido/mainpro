@@ -1,16 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 public class Classroom {
     private String label;
     private List<Student> students;
 
     public Classroom(String label) {
         this.label = label;
-        students = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
-    // Setter and getter for label
     public String getLabel() {
         return label;
     }
@@ -19,14 +16,12 @@ public class Classroom {
         this.label = label;
     }
 
-    // Relationship methods for students
     public List<Student> getStudents() {
         return students;
     }
 
     public void addStudent(Student student) {
+        student.setClassroom(String.valueOf(this));
         students.add(student);
-        student.setClassroom(this);
     }
 }
-

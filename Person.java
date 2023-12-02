@@ -1,23 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person implements Nameable {
-    int id;
-  String name;
-  int age;
- boolean parent_permission=false;
+class Person implements Nameable {
+    private static int nextId = 1;
+    private int id;
+    private String name;
+    private int age;
+    private boolean parentPermission;
     private List<Rental> rentals;
 
-    public Person(int id, String name, boolean parent_permission  ) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.parent_permission = parent_permission;
-        this.rentals = new ArrayList<>();
+
+    public boolean isParentPermission() {
+        return parentPermission;
     }
 
-    public void addRental(Rental rental) {
-        rentals.add(rental);
+    public Person(String name, int age,boolean parentPermission) {
+        this.name = name;
+        this.age = age;
+        this.parentPermission = parentPermission;
+        this.id = nextId++;
     }
 
     public int getId() {
@@ -32,27 +33,23 @@ public class Person implements Nameable {
         return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public String getCorrectName() {
 
-    private boolean ofAge() {
-        return age >= 18;
-    }
-
-    public boolean canUseServices() {
-        return ofAge() || parent_permission;
-    }
-
-    public String correct_name() {
-        return name;
+        if (name.length() > 10) {
+            return name.substring(0, 10).toUpperCase();
+        } else {
+            return name.toUpperCase();
+        }
     }
 
 
+    public List<Rental> getRentals() {
+        return rentals;
+    }
 
+    public void addRental(Rental rental) {
+        rentals.add(rental);
 
+    }
 }

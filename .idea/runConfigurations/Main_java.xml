@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Main.java" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="Main" />
-    <method v="2">
-      <option name="Make" enabled="true" />
-    </method>
-  </configuration>
-</component>

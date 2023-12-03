@@ -1,5 +1,4 @@
 class Teacher extends Person {
-<<<<<<< HEAD
     private String specialization;
 
     public Teacher(String name, int age, boolean parentPermission, String specialization) {
@@ -9,15 +8,5 @@ class Teacher extends Person {
 
     public String getSpecialization() {
         return specialization;
-=======
-     String specialization;
-    public Teacher(String name, int age, boolean parentPermission) {
-        super(age,name, parentPermission);
-        this.specialization = specialization;
-    }
-    @Override
-    public boolean canUseServices() {
-        return true;
->>>>>>> origin/week5
     }
 }

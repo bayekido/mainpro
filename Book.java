@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +12,6 @@ public class Book {
         this.author = author;
         rentals = new ArrayList<>();
         this.id = (int)(Math.random()*10000000);
-    }
-
-    public static String getid() {
-
-        return null;
     }
 
     public String getTitle() {

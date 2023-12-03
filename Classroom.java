@@ -7,10 +7,9 @@ public class Classroom {
 
     public Classroom(String label) {
         this.label = label;
-        students = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
-    // Setter and getter for label
     public String getLabel() {
         return label;
     }
@@ -19,14 +18,12 @@ public class Classroom {
         this.label = label;
     }
 
-    // Relationship methods for students
     public List<Student> getStudents() {
         return students;
     }
 
     public void addStudent(Student student) {
+        student.setClassroom(this.label);
         students.add(student);
-        student.setClassroom(this);
     }
 }
-

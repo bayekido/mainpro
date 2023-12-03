@@ -1,68 +1,57 @@
-import java.util.Scanner;
-public class Main{
-    public static void main(String[] args){
+import java.util.*;
 
-        Person person = new Person(34, "meski", true);
-        System.out.println(person.getCorrectName());
+public class Main {
 
-        CapitalizeDecorator capitalizedPerson = new CapitalizeDecorator(person);
-        System.out.println(capitalizedPerson.getCorrectName());
-
-        TrimmerDecorator capitalizedTrimmedPerson = new TrimmerDecorator(capitalizedPerson);
-        System.out.println(capitalizedTrimmedPerson.getCorrectName());
-
-
-        App app=new App();
-        Scanner scanner=new Scanner(System.in);
-        int choice;
-        do {
-            System.out.println("WELCOME TO SCHOOL LIBRARY");
-            System.out.println("Choose an option:");
-            System.out.println("1. List all books");
-            System.out.println("2. List all people");
-            System.out.println("3. Create a person");
-            System.out.println("4. Create a book");
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        App library = new App();
+        while (!quit) {
+            System.out.println("WELL COME TO CENTRAL library");
+            System.out.println("Choose an option that you want to do with :");
+            System.out.println("1. Create a person");
+            System.out.println("2. Create a book");
+            System.out.println("3. List all people");
+            System.out.println("4. List all books");
             System.out.println("5. Create a rental");
             System.out.println("6. List rentals for a person");
-            System.out.println("0. Quit the application");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the remaining newline character
+            System.out.println("7. Quit");
+            System.out.println("end");
+            int option = scanner.nextInt();
+            scanner.nextLine();
 
-            switch (choice) {
+            switch (option) {
                 case 1:
-                    app.listAllBooks();
+                    System.out.println("Create person");
+                    library.createPerson();
                     break;
                 case 2:
-                    app.listAllPeople();
+                    System.out.println("Create Book");
+                    library.createBook();
                     break;
                 case 3:
-                    System.out.println("Create a person:");
-                    app.createPerson();
+                    System.out.println("list of people");
+                    library.listAllPeople();
                     break;
                 case 4:
-                    System.out.println("Create a book:");
-                    app.createBook();
+                    System.out.println("list Book");
+                    library.listAllBooks();
                     break;
                 case 5:
-                    System.out.println("Create a rental:");
-                    app.createRental();
+                    System.out.println("Create rental");
+                    library.createRental();
                     break;
                 case 6:
-                    System.out.println("List rentals for a person:");
-                    System.out.print("Enter person ID: ");
-                    int personId = scanner.nextInt();
-                    app.listRentalsByPersonId(personId);
+                    System.out.println("list of Rental");
+                    library.listRentalsById();
                     break;
-                case 0:
-                    System.out.println("Exiting the application...");
+                case 7:
+                    quit = true;
+                    System.out.println("Thanks for using ");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
+                    System.out.println("Invalid option");
             }
         }
-        while (choice != 0);
     }
-    }
-
-
+}
